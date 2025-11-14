@@ -246,6 +246,54 @@ git config --global log.date short
 | git rebase | ... |
 | git merge | ... |
 
+
+```ruby
+Рекомендуют
+
+1. Очистить старую конфигурацию
+sudo gitlab-runner verify --delete
+
+2. Затем зарегистрировать заново
+sudo gitlab-runner register
+
+sudo gitlab-ctl status
+
+sudo gitlab-runner restart
+sudo gitlab-runner status
+sudo gitlab-runner list
+sudo gitlab-runner verify
+
+Рекомендуют
+
+1. Очистить старую конфигурацию
+sudo gitlab-runner verify --delete
+
+2. Затем зарегистрировать заново
+sudo gitlab-runner register
+
+sudo gitlab-runner register \
+  --url "http://dev-sr-git01.mip.ru" \
+  --registration-token "ВАШ_ТОКЕН" \
+  --executor "shell" \
+  --description "Локальный runner на dev-sr-git01" \
+  --tag-list "dev,shell"
+!
+Получить токен:
+Получите токен через веб-интерфейс:
+http://dev-sr-git01.mip.ru
+
+Admin Area → Runners
+
+Скопируйте Registration Token
+
+Зарегистрируете runner:
+
+sudo gitlab-runner register
+# или одной командой
+sudo gitlab-runner register --url "http://dev-sr-git01.mip.ru" --token "ВАШ_ТОКЕН" --executor "shell"
+
+```
+
 #### 8. [[⬆]](#toc) <a name='additional_materials'>Дополнительные материалы</a>
 
 1. [Pro Git book](https://git-scm.com/book/ru/v2)
