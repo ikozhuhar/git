@@ -248,6 +248,125 @@ git config --global log.date short
 
 
 ```ruby
+# Вход в консоль gitlab
+gitlab-rails console
+
+ПОИСК ПРОЕКТОВ
+
+	# Посчитать общее количество проектов
+	Project.count
+
+	# Показать все проекты с именами
+	Project.all.each do |project|
+	  puts "#{project.id}: #{project.full_path}"
+	end
+
+	# Поиск конкретного проекта, если известно имя
+	Project.find_by_full_path('группа/проект')
+
+	# Поиск по части имени
+	Project.where("path LIKE ?", "%payroll%")
+	Project.where("name LIKE ?", "%zup%")
+
+	# Показать все проекты одной группы
+	group = Group.find_by_path('payroll')
+	group.projects.each do |project|
+	  puts project.full_path
+	end
+	
+	# Экспорт всех проектов в файл
+	File.open("/tmp/all_projects.txt", "w") do |file|
+	  Project.all.each do |project|
+		file.puts "#{project.id}: #{project.full_path}"
+	  end
+	end
+
+	# Проверьте конкретно проект payroll/zup:
+	project = Project.find_by_full_path('payroll/zup')
+	project.id
+	project.full_path
+	project.visibility_level
+
+
+ПОЛЬЗОВАТЕЛИ
+
+	# Поиск пользователей
+	User.find_by(username: 'username')
+	User.find_by(email: 'user@example.com')
+	User.where(admin: true)
+
+	# Создание пользователя
+	User.create!(username: 'newuser', email: 'test@test.com', name: 'New User', password: 'password')
+
+	# Блокировка/разблокировка
+	user.block!
+	user.activate!
+
+	# Назначение админом
+	user.update(admin: true)
+
+	# Управление пользователями
+	User.find_by(username: 'username')
+	user.update(admin: true)
+
+	# Управление доступом
+	project.add_developer(user)
+	project.add_maintainer(user)
+
+	# Проверка данных
+	Project.count
+	User.where(admin: true).count
+	
+	ПРАВА ДОСТУПА
+	
+	# Добавление пользователя в проект
+	project.add_developer(user)
+	project.add_maintainer(user)
+	project.add_reporter(user)
+	project.add_guest(user)
+
+	# Удаление из проекта
+	project.team.users.delete(user)
+
+	# Проверка прав
+	project.team.member?(user)
+	user.can?(:read_project, project)
+
+
+АДМИНИСТРИРОВАНИЕ
+
+	# Статистика
+	Project.count
+	User.count
+	Group.count
+
+	# Поиск по email
+	User.find_by_email('user@example.com')
+
+	# Сброс пароля
+	user.password = 'new_password'
+	user.save!
+	
+ПОИСК ПРОБЛЕМ
+
+	# Поиск заблокированных проектов
+	Project.where(pending_delete: true)
+
+	# Поиск неактивных пользователей
+	User.where(state: 'blocked')
+
+	# Проверка репозиториев
+	project.repository.exists?
+	project.repository.empty?
+
+СОХРАНЕНИЕ ИЗМЕНЕНИЙ
+
+	# Всегда используйте save! (с восклицательным знаком)
+	user.save!
+	project.save!
+```
+
+```ruby
 Рекомендуют
 
 1. Очистить старую конфигурацию
