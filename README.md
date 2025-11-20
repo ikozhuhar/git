@@ -411,6 +411,30 @@ sudo gitlab-runner register
 # или одной командой
 sudo gitlab-runner register --url "http://dev-sr-git01.mip.ru" --token "ВАШ_ТОКЕН" --executor "shell"
 
+
+===============
+
+sudo gitlab-redis-cli info stats | grep rejected
+sudo gitlab-redis-cli info clients
+ss -ln | grep :6379
+sysctl net.core.somaxconn
+
+
+redis['backlog'] = 2048
+redis['maxclients'] = 15000
+sudo sysctl -w net.core.somaxconn=2048 
+
+В /etc/gitlab/gitlab.rb
+redis['backlog'] = 512
+redis['maxclients'] = 12000
+redis['tcp_timeout'] = 30
+redis['client_timeout'] = 30
+
+sudo sysctl -w net.core.somaxconn=2048
+
+gitlab-ctl reconfigure
+gitlab-ctl restart
+
 ```
 
 #### 8. [[⬆]](#toc) <a name='additional_materials'>Дополнительные материалы</a>
