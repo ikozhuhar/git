@@ -14,6 +14,23 @@
 
 #### 1. [[⬆]](#toc) <a name='create_project'>Создание проекта</a>
 Цели: Научиться создавать Git-репозиторий с нуля.
+
+```ruby
+…or create a new repository on the command line
+echo "# rainbow-remote" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:ikozhuhar/rainbow-remote.git
+git push -u origin main
+
+…or push an existing repository from the command line
+git remote add origin git@github.com:ikozhuhar/rainbow-remote.git
+git branch -M main
+git push -u origin main
+```
+
 ##### Создайте страницу «Hello, World»
 ```
 mkdir work && cd work
