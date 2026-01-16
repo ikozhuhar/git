@@ -12,7 +12,7 @@
 9. [Команды Git](#command)
 10. [Дополнительные материалы](#additional_materials)
 
-```bash
+```ruby
 # Инициализация локального и подключения удаленного репозитория
 git init
 git remote add ikozhuhar-git-in git@dev-sr-git01:ikozhuhar/ikozhuhar-test.git
