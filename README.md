@@ -13,12 +13,16 @@
 10. [Дополнительные материалы](#additional_materials)
 
 ```bash
+# Инициализация локального и подключения удаленного репозитория
 git init
 git remote add ikozhuhar-git-in git@dev-sr-git01:ikozhuhar/ikozhuhar-test.git
+
+# Забираем данные из удаленного репозитория ikozhuhar-git-in из ветки master
 git fetch ikozhuhar-git-in master
 git merge ikozhuhar-git-in/master
 git status
 
+# Заливаем на удаленный репозиторий ikozhuhar-git-in в ветку master
 git add -A
 git commit -m "dkfjd"
 git push -u ikozhuhar-git-in main:master
