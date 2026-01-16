@@ -12,6 +12,19 @@
 9. [Команды Git](#command)
 10. [Дополнительные материалы](#additional_materials)
 
+```bash
+git init
+git remote add ikozhuhar-git-in git@dev-sr-git01:ikozhuhar/ikozhuhar-test.git
+git fetch ikozhuhar-git-in master
+git merge ikozhuhar-git-in/master
+git status
+
+git add -A
+git commit -m "dkfjd"
+git push -u ikozhuhar-git-in main:master
+git status
+```
+
 #### 1. [[⬆]](#toc) <a name='create_project'>Создание проекта</a>
 Цели: Научиться создавать Git-репозиторий с нуля.
 
