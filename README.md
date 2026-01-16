@@ -22,9 +22,11 @@ git fetch ikozhuhar-git-in master
 git merge ikozhuhar-git-in/master
 git status
 
-# Заливаем на удаленный репозиторий ikozhuhar-git-in в ветку master
+# Сохраняем изменения в локальом репозитории
 git add -A
-git commit -m "dkfjd"
+git commit -m "commit"
+
+# Заливаем на удаленный репозиторий ikozhuhar-git-in в ветку master
 git push -u ikozhuhar-git-in main:master
 git status
 ```
